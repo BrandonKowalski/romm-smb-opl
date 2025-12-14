@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - type: bind
-        source: /Volumes/Expansion/PS2SMB
+        source: { REPLACE_ME }
         target: /mnt/ps2smb
     restart: unless-stopped
     ports:
