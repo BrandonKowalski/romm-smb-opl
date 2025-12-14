@@ -1,0 +1,16 @@
+services:
+  samba:
+    container_name: docker_smb
+    tty: true
+    hostname: Docker
+    build:
+      context: .
+      shm_size: '100mb'
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: /Volumes/Expansion/PS2SMB
+        target: /mnt/ps2smb
+    restart: unless-stopped
+    ports:
+      - "445:445/tcp"
