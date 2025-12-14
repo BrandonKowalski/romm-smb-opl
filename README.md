@@ -24,13 +24,14 @@ A Docker container for exposing PS2 games managed in RomM to OPL via SMB.
 
 ### 1. Create Hard Links to RomM Game Files
 
-On your host system, create hard links from your RomM PS2 games directory:
+On your host system, you will need to create a hardlink to a folder that will serve as the root of your SMB Share.
 
 ```bash
+mkdir -p /{WHERE_YOU_WANT}/PS2SMB/DVD
 cp -al /{ROMM_ROOT}/ROMS/ps2/roms/* /{WHERE_YOU_WANT}/PS2SMB/DVD/
 ```
 
-> **Note:** The source directory is intentionally one level above the `DVD` folder. This allows OPL to create the necessary folders alongside `DVD`.
+---
 
 ### 2. Configure Docker Compose
 
@@ -40,6 +41,12 @@ Edit `docker-compose.yml` and update the volume source path:
 source: /{WHERE_YOU_WANT}/PS2SMB
 ```
 
+> **Note:** The source directory is intentionally one level above the `DVD` folder. 
+> 
+> This allows OPL to create the necessary folders alongside `DVD`.
+
+---
+
 ### 3. Start the Container
 
 Build and start the container:
@@ -47,6 +54,8 @@ Build and start the container:
 ```bash
 docker-compose up -d
 ```
+
+---
 
 ### 4. SMB Share Details
 
@@ -57,6 +66,8 @@ The SMB share will be available at:
 - **User:** `guest`
 - **Password:** (none)
 - **Port:** `445`
+
+---
 
 ### 5. Configure OPL Network Settings
 
