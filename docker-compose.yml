@@ -3,10 +3,7 @@ services:
     container_name: docker_smb
     tty: true
     hostname: Docker
-    build:
-      context: .
-      shm_size: '100mb'
-      dockerfile: Dockerfile
+    image: ghcr.io/brandonkowalski/romm-smb-opl:latest
     volumes:
       - type: bind
         source: { REPLACE_ME }
